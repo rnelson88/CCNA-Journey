@@ -1,0 +1,35 @@
+VLAN Hopping Attack Explained
+Quick VLAN Basics:
+
+VLAN (Virtual Local Area Network): A VLAN is a separate "mini-network" inside your main network. It lets you organize your devices into different groups, enhancing security, reducing congestion, and simplifying management.
+
+Native VLAN: On a trunk port (a link carrying multiple VLANs), the native VLAN handles untagged traffic. By default, Cisco switches assign VLAN 1 as the native VLAN. However, for security reasons, it's better to choose a different VLAN that's unused.
+
+What's VLAN Hopping?
+
+VLAN hopping is an attack method hackers use to move from one VLAN to another without authorization. Typically, attackers exploit weaknesses related to the native VLAN on trunk ports to bypass VLAN restrictions.
+
+How VLAN Hopping Works (Using Native VLAN):
+
+An attacker connects to a switch port configured incorrectly or insecurely, typically one that defaults to the native VLAN.
+
+Because the native VLAN accepts untagged traffic, the attacker sends untagged frames that the switch forwards onto the native VLAN.
+
+This allows the attacker to gain unauthorized access to networks intended to be isolated.
+
+Security Risk:
+
+This attack allows attackers to bypass VLAN segmentation, potentially exposing sensitive data or critical network infrastructure.
+
+How to Prevent VLAN Hopping:
+  Use an unused VLAN as your native VLAN (e.g., VLAN 999).
+  Explicitly set switch ports as access ports:
+    switchport mode access
+    switchport access vlan X
+
+Tag the native VLAN to ensure all VLAN traffic is explicitly identified:
+    vlan dot1q tag native
+
+
+Taking these steps helps secure your network against VLAN hopping and unauthorized access.
+
